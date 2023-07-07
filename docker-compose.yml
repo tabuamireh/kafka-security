@@ -13,7 +13,7 @@ services:
       ZOOKEEPER_SYNC_LIMIT: 2
       KAFKA_OPTS: "-Djava.security.auth.login.config=/opt/kafka/config/zoo-jaas.conf -Dzookeeper.authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider"
     volumes:
-      - ./testHelpers/kafka/zoo-jaas.conf:/opt/kafka/config/zoo-jaas.conf
+      - ./config/zoo-jaas.conf:/opt/kafka/config/zoo-jaas.conf
 
   zoonavigator:
     container_name: zoonavigator
@@ -59,10 +59,10 @@ services:
       KAFKA_OPTS: "-Djava.security.auth.login.config=/opt/kafka/config/kafka-jaas.conf"
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
     volumes:
-      - ./testHelpers/certs/kafka.server.keystore.jks:/etc/kafka/secrets/kafka.server.keystore.jks
-      - ./testHelpers/certs/kafka.server.truststore.jks:/etc/kafka/secrets/kafka.server.truststore.jks
-      - ./testHelpers/certs/keystore_creds:/etc/kafka/secrets/keystore_creds
-      - ./testHelpers/certs/sslkey_creds:/etc/kafka/secrets/sslkey_creds
-      - ./testHelpers/certs/truststore_creds:/etc/kafka/secrets/truststore_creds
-      - ./testHelpers/kafka/kafka-jaas.conf:/opt/kafka/config/kafka-jaas.conf
-      - ./testHelpers/kafka/client.properties:/opt/kafka/config/client.properties
+      - ./certs/kafka.server.keystore.jks:/etc/kafka/secrets/kafka.server.keystore.jks
+      - ./certs/kafka.server.truststore.jks:/etc/kafka/secrets/kafka.server.truststore.jks
+      - ./certs/keystore_creds:/etc/kafka/secrets/keystore_creds
+      - ./certs/sslkey_creds:/etc/kafka/secrets/sslkey_creds
+      - ./certs/truststore_creds:/etc/kafka/secrets/truststore_creds
+      - ./config/kafka-jaas.conf:/opt/kafka/config/kafka-jaas.conf
+      - ./config/client.properties:/opt/kafka/config/client.properties
